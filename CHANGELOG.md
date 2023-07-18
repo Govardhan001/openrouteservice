@@ -55,6 +55,7 @@ RELEASING:
 - Centrality API and implementation (use export API and external centrality tools instead)
 
 ### Fixed
+- GTFS issues with old jts-core version used in GH ([#1501](https://github.com/GIScience/openrouteservice/pull/1501))
 - Upgrade kafka_2.13 from 3.4.0 to 3.5.0 ([#1472](https://github.com/GIScience/openrouteservice/issues/1472))
 - Remove maven-shared-utils dependency ([#1473](https://github.com/GIScience/openrouteservice/issues/1473))
 - update spring-boot from 2.7.10 to 2.7.12 ([#1474](https://github.com/GIScience/openrouteservice/issues/1474))
