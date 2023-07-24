@@ -24,15 +24,21 @@ import org.codehaus.commons.nullanalysis.NotNull;
 import org.heigit.ors.api.converters.APIRequestProfileConverter;
 import org.heigit.ors.api.converters.APIRequestSingleCoordinateConverter;
 import org.heigit.ors.api.util.AppConfigMigration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class ApiConfig implements WebMvcConfigurer {
+
+    @Autowired
+    ApiKeyInterceptor apiKeyInterceptor;
+
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new APIRequestSingleCoordinateConverter());
@@ -84,5 +90,10 @@ public class ApiConfig implements WebMvcConfigurer {
         mapper.registerModule(new JavaTimeModule());
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         return mapper;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(apiKeyInterceptor);
     }
 }

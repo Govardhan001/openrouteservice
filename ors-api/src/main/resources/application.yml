@@ -165,3 +165,6 @@ springdoc:
   api-docs:
     path: /v2/api-docs
     version: OPENAPI_3_0
+
+app:
+  apikey: "7d548dcd-ad42-41ac-9880-177225011104"
